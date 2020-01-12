@@ -1,0 +1,16 @@
+node_modules
+.DS_Store
+
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
+
+tags
+tags.temp
+tags.lock
+*.sw*
+*.log
+stellar.yaml
+
+cypress/screenshots
+cypress/videos
