@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-require('./models/todoListModel');
+const Tasks = require('./models/todoListModel');
 const routes = require('./routes/todoListRoutes');
 
 const app = express();

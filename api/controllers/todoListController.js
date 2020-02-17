@@ -14,7 +14,7 @@ exports.listAllTasks = function(req, res) {
 };
 
 exports.createTask = function(req, res) {
-  const newTask = new Task(req);
+  const newTask = new Task(req.body);
   newTask.save(function(err, task) {
     if (err) {
       res.send(err);
