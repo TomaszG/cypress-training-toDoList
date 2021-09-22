@@ -5,13 +5,36 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Docker: Attach to api",
-      "type": "node",
-      "request": "attach",
-      "port": 9229,
-      "localRoot": "${workspaceFolder}/api",
-      "remoteRoot": "/app",
-      "protocol": "inspector"
+      "command": "npm start",
+      "name": "Start API",
+      "request": "launch",
+      "type": "node-terminal",
+      "cwd": "${workspaceFolder}/api"
     },
+    {
+      "command": "npm start",
+      "name": "Start UI",
+      "request": "launch",
+      "type": "node-terminal",
+      "cwd": "${workspaceFolder}/ui"
+    },
+    {
+      "type": "pwa-chrome",
+      "request": "launch",
+      "name": "Launch Chrome",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}/ui"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Server/Client",
+      "configurations": [
+        "Start API",
+        "Start UI",
+        "Launch Chrome"
+      ],
+      // "preLaunchTask": "${defaultBuildTask}"
+    }
   ]
 }
