@@ -25,12 +25,18 @@ class TodoForm extends Component {
         <div className="header">
           <form onSubmit={this.props.addTask}>
             <input
+              data-cy="taskName"
               placeholder="Task"
               ref={this.inputElement}
               value={this.props.currentTask.name}
               onChange={this.props.handleInput}
             />
-            <button type="submit"> Add Task </button>
+            <button
+              data-cy="addTask"
+              type="submit"
+            >
+              Add Task
+            </button>
           </form>
         </div>
       </div>

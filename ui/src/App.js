@@ -71,16 +71,12 @@ class App extends Component {
       return;
     }
 
-    const formBody = Object.keys(newTask)
-      .map(key => `${encodeURIComponent(key) }=${ encodeURIComponent(newTask[key])}`)
-      .join('&');
-
     const response = await fetch(routes.tasks.create(), {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+        'Content-Type': 'application/json',
       },
-      body: formBody,
+      body: JSON.stringify(newTask),
     });
 
     const body = await response.json();
@@ -116,7 +112,7 @@ class App extends Component {
           handleInput={this.handleInput}
           currentTask={this.state.currentTask}
         />
-        <div className="error"> {
+        <div className="error" data-cy="formError"> {
           this.state.error
             ? <span>{this.state.error}</span>
             : null
