@@ -2,6 +2,8 @@
 ARG VARIANT=14
 FROM mcr.microsoft.com/vscode/devcontainers/javascript-node:0-${VARIANT}
 
+ARG USERNAME=node
+
 # Install MongoDB command line tools
 ARG MONGO_TOOLS_VERSION=4.2
 RUN curl -sSL "https://www.mongodb.org/static/pgp/server-${MONGO_TOOLS_VERSION}.asc" | (OUT=$(apt-key add - 2>&1) || echo $OUT) \
@@ -34,7 +36,13 @@ RUN if [ "$USER_GID" != "1000" ] || [ "$USER_UID" != "1000" ]; then groupmod --g
 # [Optional] Uncomment if you want to install more global node modules
 # RUN su node -c "npm install -g <your-package-list-here>"
 
-USER node
+RUN SNIPPET="export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhistory/.bash_history" \
+  && mkdir /commandhistory \
+  && touch /commandhistory/.zsh_history \
+  && chown -R $USERNAME /commandhistory \
+  && echo $SNIPPET >> "/home/$USERNAME/.zshrc"
+
+USER $USERNAME
 
 ENV TERM xterm
 # Set the default shell to zsh rather than sh
@@ -45,4 +53,4 @@ RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -
   && git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions \
   && echo 'ZSH_THEME="robbyrussell"' >>~/.zshrc \
   && echo 'source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' >>~/.zshrc \
-  && echo 'source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh' >>~/.zshrc \
+  && echo 'source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh' >>~/.zshrc
