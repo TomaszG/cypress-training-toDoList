@@ -10,11 +10,11 @@
   "settings": {},
   // Add the IDs of extensions you want installed when the container is created.
   "extensions": [
-	"dbaeumer.vscode-eslint",
-	"mongodb.mongodb-vscode",
-	"editorconfig.editorconfig",
-	"streetsidesoftware.code-spell-checker"
-],
+    "dbaeumer.vscode-eslint",
+    "mongodb.mongodb-vscode",
+    "editorconfig.editorconfig",
+    "streetsidesoftware.code-spell-checker"
+  ],
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   "forwardPorts": [
     3000,
@@ -22,7 +22,7 @@
     27017
   ],
   // Use 'postCreateCommand' to run commands after the container is created.
-  // "postCreateCommand": "yarn install",
+  "postCreateCommand": "sudo chown -R $USER api/node_modules ui/node_modules test/node_modules && npm i --prefix api && npm i --prefix ui && npm i --prefix test",
   // Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
   "remoteUser": "node"
 }

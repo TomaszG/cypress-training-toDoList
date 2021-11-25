@@ -14,8 +14,13 @@ services:
     env_file: devcontainer.env
 
     volumes:
-      - ..:/workspace:cached
+      # https://code.visualstudio.com/docs/remote/containers-advanced#_update-the-mount-consistency-to-delegated-for-macos
+      - ..:/workspace:delegated # default is 'cached', however, on MacOs you can try 'delegated'.
       - todolist-bashhistory:/commandhistory
+      - api-node_modules:/workspace/api/node_modules
+      - ui-node_modules:/workspace/ui/node_modules
+      - test-node_modules:/workspace/test/node_modules
+      - cache:/home/node/.cache/
 
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
@@ -47,3 +52,7 @@ services:
 volumes:
   mongodb-data:
   todolist-bashhistory:
+  api-node_modules:
+  ui-node_modules:
+  test-node_modules:
+  cache:
