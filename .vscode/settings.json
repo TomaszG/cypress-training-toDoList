@@ -2,6 +2,6 @@
   "eslint.workingDirectories": [
     "./api",
     "./ui",
-    "./cypress",
+    "./test",
   ]
 }
