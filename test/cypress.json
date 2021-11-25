@@ -1,0 +1,16 @@
+{
+  "baseUrl": "http://localhost:3000",
+  "trashAssetsBeforeRuns": true,
+  "video": true,
+  "videoUploadOnPasses": true,
+  "reporter": "junit",
+  "reporterOptions": {
+    "mochaFile": "cypress/test_results/ui_e2e-[hash].xml",
+    "toConsole": false
+  },
+  "projectId": "cypress-todo-tests",
+  "env": {
+    "dbConnectionString": "mongodb://localhost:27017/Tododb",
+    "apiUrl": "http://localhost:5000"
+  }
+}

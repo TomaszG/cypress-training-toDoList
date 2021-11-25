@@ -3,15 +3,53 @@
   // Hover to view descriptions of existing attributes.
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
+  "compounds": [
+    {
+      "name": "Server/Client",
+      "configurations": [
+        "Start API",
+        "Start UI",
+        "Launch Chrome"
+      ],
+      // "preLaunchTask": "${defaultBuildTask}"
+    }
+  ],
   "configurations": [
     {
-      "name": "Docker: Attach to api",
-      "type": "node",
-      "request": "attach",
-      "port": 9229,
-      "localRoot": "${workspaceFolder}/api",
-      "remoteRoot": "/app",
-      "protocol": "inspector"
+      "command": "npm start",
+      "name": "Start API",
+      "request": "launch",
+      "type": "node-terminal",
+      "cwd": "${workspaceFolder}/api",
+      "presentation": {
+        "visibility": "hidden",
+      }
     },
-  ]
+    {
+      "command": "npm start",
+      "name": "Start UI",
+      "request": "launch",
+      "type": "node-terminal",
+      "cwd": "${workspaceFolder}/ui",
+      "presentation": {
+        "visibility": "hidden",
+      }
+    },
+    {
+      "type": "pwa-chrome",
+      "request": "launch",
+      "name": "Launch Chrome",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}/ui",
+      "presentation": {
+        "visibility": "hidden",
+      },
+      "runtimeExecutable": "/Applications/Chromium.app/Contents/MacOS/Chromium",
+      "runtimeArgs": [
+        "--new-window",
+        "--remote-debugging-port=9222",
+        "--disable-background-networking"
+      ]
+    }
+  ],
 }

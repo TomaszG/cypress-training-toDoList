@@ -12,6 +12,7 @@ class TodoTasks extends Component {
     <li
       key={task._id}
       onClick={() => this.props.deleteTask(task._id)}
+      data-cy="taskItem"
     >
       {task.name}
     </li>
@@ -21,7 +22,7 @@ class TodoTasks extends Component {
     const tasks = this.props.tasks;
     const listTasks = tasks.map(this.createTaskEntry);
 
-    return <ul className="theList">{listTasks}</ul>;
+    return <ul className="theList" data-cy="tasksList">{listTasks}</ul>;
   }
 }
 

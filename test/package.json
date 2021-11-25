@@ -1,0 +1,23 @@
+{
+  "name": "todolisttests",
+  "version": "0.1.0",
+  "description": "ToDo List Cypress Tests",
+  "main": "index.js",
+  "author": "Tomasz Grazynski",
+  "scripts": {
+    "open": "npx cypress open",
+    "test": "npx cypress run",
+    "lint": "npx eslint ."
+  },
+  "dependencies": {
+    "cypress": "^4.0.2",
+    "mongoose": "^5.9.1",
+    "whatwg-fetch": "^3.0.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.8.0",
+    "eslint-config-brainhub": "^1.12.0",
+    "eslint-plugin-cypress": "^2.10.1"
+  }
+}
